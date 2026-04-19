@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>💙 כנפיים – מדריך שירותים לצרכים מיוחדים</title>
+
+    <!-- הגדרות PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="כנפיים">
+    <link rel="apple-touch-icon" href="https://flaticon.com">
+
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root{
+            --blue:#2563EB; --bg:#F0F7FF; --text:#1E293B; --muted:#64748B; --radius:22px; --font:'Heebo',sans-serif;
+        }
+        body{font-family:var(--font);background:var(--bg);color:var(--text);direction:rtl;margin:0;min-height:100vh;}
+        .hdr{background:linear-gradient(135deg,#1E3A8A,#2563EB);padding:15px;color:white;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+        .hero{padding:40px 20px;text-align:center;background:white;margin:20px;border-radius:var(--radius);box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+        
+        /* באנר התקנה */
+        #pwa-install-banner {
+            display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; 
+            z-index: 9999; background: white; padding: 16px; border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 2px solid var(--blue); 
+            align-items: center; gap: 12px; animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .pwa-btn { background: var(--blue); color: white; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 800; cursor: pointer; }
+        .ios-instruct { font-size: 13px; color: var(--muted); line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+<header class="hdr">
+    <h1>כנפיים 💙</h1>
+</header>
+
+<main class="hero">
+    <h2>ברוכים הבאים לאפליקציה</h2>
+    <p>המדריך המלא לשירותים לצרכים מיוחדים.</p>
+</main>
+
+<!-- באנר התקנה -->
+<div id="pwa-install-banner">
+  <div style="font-size:30px;">📲</div>
+  <div style="flex:1">
+    <b style="display:block; font-size:15px;">התקנת אפליקציית כנפיים</b>
+    <div id="pwa-text" class="ios-instruct">הוסף למסך הבית לגישה מהירה</div>
+  </div>
+  <button id="pwa-action-btn" class="pwa-btn">התקנה</button>
+  <button onclick="document.getElementById('pwa-install-banner').style.display='none'" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
+</div>
+
+<script>
+    let deferredPrompt;
+    const banner = document.getElementById('pwa-install-banner');
+    const actionBtn = document.getElementById('pwa-action-btn');
+    const pwaText = document.getElementById('pwa-text');
+
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        banner.style.display = 'flex';
+    });
+
+    if (isIos && !isStandalone) {
+        banner.style.display = 'flex';
+        pwaText.innerHTML = 'לחץ על כפתור השיתוף בתחתית ואז על <b>"הוסף למסך הבית"</b>';
+        actionBtn.style.display = 'none';
+    }
+
+    actionBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') banner.style.display = 'none';
+            deferredPrompt = null;
+        }
+    });
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js');
+        });
+    }
+</script>
+</body>
+</html>
