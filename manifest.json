@@ -13,7 +13,7 @@
   "icons": [
     {
       "src": "https://via.placeholder.com/192x192/2563EB/ffffff?text=💙",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
