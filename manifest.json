@@ -1,0 +1,49 @@
+{
+  "name": "כנפיים – מדריך צרכים מיוחדים",
+  "short_name": "כנפיים",
+  "description": "מדריך מקיף לשירותים לאנשים עם צרכים מיוחדים בישראל ובעולם",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F0F7FF",
+  "theme_color": "#2563EB",
+  "lang": "he",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "categories": ["health", "education", "medical"],
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/2563EB/ffffff?text=💙",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/2563EB/ffffff?text=💙",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "טיפולים",
+      "short_name": "טיפולים",
+      "url": "./index.html?cat=therapy",
+      "description": "מצא מטפלים לילדים עם צרכים מיוחדים"
+    },
+    {
+      "name": "שיניים מיוחדות",
+      "short_name": "שיניים",
+      "url": "./index.html?cat=medical",
+      "description": "מרפאות שיניים לבעלי מוגבלות"
+    },
+    {
+      "name": "ויסות חושי",
+      "short_name": "ויסות",
+      "url": "./index.html?cat=sensory",
+      "description": "טיפולי ויסות חושי וסנוזלן"
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
