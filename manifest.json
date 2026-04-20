@@ -1,0 +1,172 @@
+{
+  "id": "kanafayim-special-needs-app",
+  "name": "כנפיים – מדריך צרכים מיוחדים",
+  "short_name": "כנפיים",
+  "description": "מדריך מקיף לשירותים לאנשים עם צרכים מיוחדים בישראל ובעולם – טיפולים, ויסות חושי, מוזיקותרפיה, שיניים, רכיבה טיפולית ועוד",
+  "start_url": "https://asisi27-hue.github.io/Knafaim/index.html",
+  "scope": "https://asisi27-hue.github.io/Knafaim/",
+  "display": "standalone",
+  "display_override": ["tabbed", "window-controls-overlay", "standalone", "minimal-ui"],
+  "background_color": "#2563EB",
+  "theme_color": "#2563EB",
+  "lang": "he",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "categories": ["health", "education", "medical"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+
+  "screenshots": [
+    {
+      "src": "./screenshot1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "מסך ראשי – רשימת שירותים"
+    },
+    {
+      "src": "./screenshot2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "חיפוש לפי קטגוריה"
+    },
+    {
+      "src": "./screenshot-wide.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "תצוגת דסקטופ – מדריך כנפיים"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "טיפולים",
+      "short_name": "טיפולים",
+      "url": "https://asisi27-hue.github.io/Knafaim/index.html?cat=therapy",
+      "description": "מצא מטפלים לילדים עם צרכים מיוחדים",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "שיניים מיוחדות",
+      "short_name": "שיניים",
+      "url": "https://asisi27-hue.github.io/Knafaim/index.html?cat=medical",
+      "description": "מרפאות שיניים לבעלי מוגבלות",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "ויסות חושי",
+      "short_name": "ויסות",
+      "url": "https://asisi27-hue.github.io/Knafaim/index.html?cat=sensory",
+      "description": "טיפולי ויסות חושי וסנוזלן",
+      "icons": [{ "src": "./icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+
+  "share_target": {
+    "action": "https://asisi27-hue.github.io/Knafaim/index.html",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+
+  "file_handlers": [
+    {
+      "action": "https://asisi27-hue.github.io/Knafaim/index.html",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/json": [".json"]
+      }
+    }
+  ],
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+kanafayim",
+      "url": "https://asisi27-hue.github.io/Knafaim/index.html?q=%s"
+    }
+  ],
+
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+
+  "widgets": [
+    {
+      "name": "כנפיים – שירותים קרובים",
+      "short_name": "כנפיים",
+      "description": "מצא שירותים לצרכים מיוחדים קרוב אליך",
+      "tag": "kanafayim-widget",
+      "template": "kanafayim-widget-template",
+      "ms_ac_template": "./widget-template.json",
+      "data": "https://asisi27-hue.github.io/Knafaim/index.html",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "./screenshot1.png",
+          "sizes": "390x844",
+          "label": "כנפיים widget"
+        }
+      ],
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+
+  "note_taking": {
+    "new_note_url": "https://asisi27-hue.github.io/Knafaim/index.html"
+  },
+
+  "scope_extensions": [
+    {
+      "origin": "https://asisi27-hue.github.io"
+    }
+  ],
+
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://asisi27-hue.github.io/Knafaim/manifest.json"
+    }
+  ],
+
+  "prefer_related_applications": false
+}
