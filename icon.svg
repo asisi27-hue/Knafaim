@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background circle -->
+  <rect width="512" height="512" rx="100" fill="#2563EB"/>
+  <!-- Gradient overlay -->
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="100" fill="url(#bg)"/>
+
+  <!-- Wings shape (כנפיים) -->
+  <!-- Left wing -->
+  <path d="M80 280 C60 200, 120 140, 200 180 C170 220, 160 260, 180 300 C140 310, 100 300, 80 280Z"
+        fill="white" opacity="0.95"/>
+  <!-- Right wing -->
+  <path d="M432 280 C452 200, 392 140, 312 180 C342 220, 352 260, 332 300 C372 310, 412 300, 432 280Z"
+        fill="white" opacity="0.95"/>
+
+  <!-- Body / heart center -->
+  <circle cx="256" cy="270" r="55" fill="white" opacity="0.95"/>
+
+  <!-- Heart inside -->
+  <path d="M256 310 C256 310, 216 282, 216 258 C216 242, 228 232, 240 238 C246 241, 252 248, 256 255 C260 248, 266 241, 272 238 C284 232, 296 242, 296 258 C296 282, 256 310, 256 310Z"
+        fill="#2563EB"/>
+
+  <!-- Small star sparkles -->
+  <circle cx="160" cy="160" r="8" fill="white" opacity="0.7"/>
+  <circle cx="352" cy="160" r="8" fill="white" opacity="0.7"/>
+  <circle cx="120" cy="340" r="5" fill="white" opacity="0.5"/>
+  <circle cx="392" cy="340" r="5" fill="white" opacity="0.5"/>
+</svg>
