@@ -1,0 +1,71 @@
+{
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "💙 כנפיים",
+      "size": "Large",
+      "weight": "Bolder",
+      "color": "Accent"
+    },
+    {
+      "type": "TextBlock",
+      "text": "מדריך שירותים לצרכים מיוחדים",
+      "size": "Small",
+      "wrap": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🧠 טיפולים",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "🌀 ויסות חושי",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "🐴 בעלי חיים",
+              "size": "Small"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "🦷 שיניים",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "📚 חינוך",
+              "size": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "⚽ פנאי",
+              "size": "Small"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "פתח כנפיים",
+      "url": "https://asisi27-hue.github.io/Knafaim/index.html"
+    }
+  ]
+}
