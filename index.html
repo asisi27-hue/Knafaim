@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he" id="html-root">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#2563EB"/>
+<meta name="description" content="מדריך מקיף לשירותים לאנשים עם צרכים מיוחדים"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="כנפיים"/>
+<link rel="manifest" href="./manifest.json"/>
+<link rel="apple-touch-icon" href="./icon-192.png"/>
+<title>💙 כנפיים – מדריך שירותים לצרכים מיוחדים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══ TOKENS ═══ */
+:root{
+  --blue:#2563EB;--teal:#0EA5E9;--green:#10B981;--orange:#F59E0B;
+  --pink:#EC4899;--purple:#8B5CF6;--red:#EF4444;--warm:#F97316;
+  --lime:#84CC16;--cyan:#06B6D4;
+  --bg:#F0F7FF;--card:#FFF;--text:#1E293B;--muted:#64748B;--border:#E2EAF4;
+  --radius:22px;--font:'Heebo',sans-serif;
+  --fs:16px; /* accessibility font scale */
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{font-size:var(--fs);}
+body{font-family:var(--font);background:var(--bg);color:var(--text);direction:var(--dir,rtl);min-height:100vh;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;}
+
+/* High contrast mode */
+body.hc{--bg:#000;--card:#111;--text:#fff;--muted:#ccc;--border:#555;}
+body.hc .hdr{background:#000;border-bottom:2px solid #fff;}
+body.hc .card{border-color:#555;}
+
+/* ═══ HEADER ═══ */
+.hdr{background:linear-gradient(135deg,#1E3A8A 0%,#2563EB 55%,#0EA5E9 100%);padding:10px 14px;position:sticky;top:0;z-index:200;box-shadow:0 4px 24px rgba(30,58,138,.3);}
+.hdr-row{display:flex;align-items:center;gap:10px;}
+.logo-wrap{display:flex;align-items:center;gap:8px;cursor:pointer;-webkit-tap-highlight-color:rgba(255,255,255,.2);padding:6px;border-radius:12px;flex-shrink:0;}
+.logo-box{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.2);border:2px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.logo-txt .t1{font-size:17px;font-weight:900;color:#fff;line-height:1;}
+.logo-txt .t2{font-size:9px;color:rgba(255,255,255,.7);}
+.srch-wrap{flex:1;position:relative;}
+.srch-wrap input{width:100%;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.3);border-radius:50px;padding:9px 40px 9px 14px;color:#fff;font-size:15px;font-family:var(--font);outline:none;}
+.srch-wrap input::placeholder{color:rgba(255,255,255,.6);}
+.srch-ico{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:18px;cursor:pointer;padding:4px;}
+.hdr-actions{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.lang-btn{background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.35);color:#fff;border-radius:10px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);}
+
+/* ═══ INSTALL BANNER ═══ */
+#install-banner{display:none;background:linear-gradient(135deg,#1E3A8A,#2563EB);color:#fff;padding:10px 14px;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;}
+#install-banner p{font-size:13px;font-weight:600;flex:1;}
+#install-btn{background:#fff;color:#1E3A8A;border:none;border-radius:20px;padding:7px 16px;font-weight:800;font-size:13px;cursor:pointer;font-family:var(--font);}
+
+/* ═══ FILTERS ═══ */
+.fbar{background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:62px;z-index:150;box-shadow:0 2px 14px rgba(0,0,0,.07);}
+.fbar-in{display:flex;gap:7px;padding:8px 12px;overflow-x:auto;scrollbar-width:none;}
+.fbar-in::-webkit-scrollbar{height:0;}
+.fcat{display:flex;align-items:center;gap:5px;white-space:nowrap;border:2px solid var(--border);border-radius:50px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);background:var(--bg);color:var(--muted);transition:all .2s;}
+.fcat.on{color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(0,0,0,.18);transform:scale(1.04);}
+
+/* ═══ MAIN ═══ */
+.main{max-width:920px;margin:0 auto;padding:14px 12px 110px;}
+.banner{background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:2px solid #F59E0B;border-radius:var(--radius);padding:12px 14px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px;}
+.banner .bi{font-size:26px;flex-shrink:0;margin-top:2px;}
+.banner .bt{font-size:13px;line-height:1.6;color:#92400E;}
+.banner .bt b{display:block;font-size:14px;font-weight:800;margin-bottom:2px;}
+.sec-ttl{font-size:17px;font-weight:800;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.count-badge{background:var(--blue);color:#fff;border-radius:20px;font-size:12px;padding:2px 10px;font-weight:700;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:26px;}
+
+/* ═══ CARD ═══ */
+.card{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:0;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;overflow:hidden;animation:cardIn .3s ease both;}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12);}
+.card:active{transform:scale(.97);}
+.card-top-bar{height:5px;width:100%;}
+.card-body{padding:14px;}
+.card-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.card-icon{width:52px;height:52px;border-radius:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.card-ti .cn{font-size:15px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:2px;}
+.card-ti .co{font-size:11px;color:var(--muted);}
+.card-ti .vbadge{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;color:#059669;background:#D1FAE5;border-radius:20px;padding:1px 6px;margin-top:2px;}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.tag{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;}
+.tag-cat{color:#fff;}
+.tag-plain{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+.card-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;}
+.card-loc{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);margin-bottom:8px;}
+.card-acts{display:flex;gap:5px;flex-wrap:wrap;}
+.act-btn{display:flex;align-items:center;gap:4px;border:none;border-radius:10px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;font-family:var(--font);transition:all .15s;white-space:nowrap;}
+.act-call{background:#DCFCE7;color:#16A34A;}.act-call:hover{background:#16A34A;color:#fff;}
+.act-wa{background:#D1FAE5;color:#047857;}.act-wa:hover{background:#10B981;color:#fff;}
+.act-map{background:#DBEAFE;color:#1D4ED8;}.act-map:hover{background:#1D4ED8;color:#fff;}
+.act-web{background:#EDE9FE;color:#6D28D9;}.act-web:hover{background:#7C3AED;color:#fff;}
+.act-save{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);}
+.act-save.on{background:#FEF9C3;color:#854D0E;border-color:#FDE68A;}
+
+/* ═══ GPS POPUP ═══ */
+.gps-ov{position:fixed;inset:0;background:rgba(15,23,42,.75);backdrop-filter:blur(12px);z-index:700;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s;}
+.gps-box{background:var(--card);border-radius:28px;padding:26px 20px 22px;max-width:320px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popUp .3s cubic-bezier(.34,1.56,.64,1);}
+.gps-icon{font-size:50px;margin-bottom:12px;display:block;}
+.gps-box h3{font-size:19px;font-weight:900;color:var(--text);margin-bottom:7px;}
+.gps-box .gps-p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.gps-svc{background:var(--bg);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:800;color:var(--blue);margin-bottom:18px;border:2px solid var(--border);}
+.gps-btns{display:flex;gap:8px;}
+.gps-ok{flex:1;background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;border:none;border-radius:14px;padding:13px;font-size:14px;font-weight:800;cursor:pointer;font-family:var(--font);}
+.gps-skip{flex:1;background:var(--bg);color:var(--muted);border:2px solid var(--border);border-radius:14px;padding:13px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);}
+.gps-spin{width:40px;height:40px;border:4px solid #DBEAFE;border-top-color:#2563EB;border-radius:50%;margin:0 auto 14px;animation:spin 1s linear infinite;}
+
+/* ═══ MODAL ═══ */
+.ov{position:fixed;inset:0;background:rgba(15,23,42,.65);backdrop-filter:blur(10px);z-index:500;display:flex;align-items:flex-end;animation:fadeIn .2s;}
+.modal{background:var(--card);border-radius:30px 30px 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:0 0 40px;animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);max-width:600px;margin:0 auto;}
+.modal-bar{height:7px;border-radius:7px 7px 0 0;}
+.modal-in{padding:18px 18px 0;}
+.m-handle{width:44px;height:5px;background:#E2E8F0;border-radius:3px;margin:0 auto 16px;}
+.m-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.m-icon{width:64px;height:64px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+.m-title{font-size:20px;font-weight:900;line-height:1.2;margin-bottom:2px;}
+.m-sub{font-size:12px;color:var(--muted);}
+.m-sec{margin-bottom:14px;}
+.m-sec h3{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+.m-sec p{font-size:13px;line-height:1.7;color:var(--text);}
+.info-row{display:flex;align-items:center;gap:9px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--border);}
+.info-row:last-child{border:none;}
+.info-row .ii{font-size:18px;width:24px;text-align:center;}
+.m-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding:0 18px;}
+.m-btn{flex:1;min-width:110px;border:none;border-radius:14px;padding:13px 8px;font-size:13px;font-weight:800;cursor:pointer;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:6px;}
+.mb-primary{background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;}
+.mb-wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;}
+.mb-map{background:linear-gradient(135deg,#1D4ED8,#06B6D4);color:#fff;}
+.mb-sec{background:var(--bg);color:var(--text);border:2px solid var(--border);}
+
+/* ═══ BOTTOM NAV ═══ */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-top:2px solid var(--border);box-shadow:0 -4px 20px rgba(0,0,0,.09);display:flex;justify-content:space-around;padding:6px 0 env(safe-area-inset-bottom,10px);}
+.nb{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;padding:5px 14px;border-radius:14px;font-family:var(--font);}
+.nb .ni{font-size:24px;filter:grayscale(50%) opacity(.55);}
+.nb .nl{font-size:10px;color:#aaa;font-weight:700;}
+.nb.on .ni{filter:none;}
+.nb.on .nl{color:var(--blue);}
+.nb-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);margin-top:1px;}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#1E293B;color:#fff;border-radius:50px;padding:11px 24px;font-size:13px;font-weight:700;box-shadow:0 8px 32px rgba(0,0,0,.3);z-index:9999;display:flex;align-items:center;gap:8px;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+
+/* ═══ EMPTY / ABOUT ═══ */
+.empty{text-align:center;padding:50px 20px;color:var(--muted);}
+.empty .ee{font-size:56px;margin-bottom:12px;}
+.empty p{font-size:16px;font-weight:700;}
+.about-card{background:var(--card);border-radius:var(--radius);border:2px solid var(--border);padding:20px;margin-bottom:12px;}
+.about-card h3{font-size:15px;font-weight:800;margin-bottom:10px;}
+.about-item{display:flex;gap:9px;align-items:flex-start;font-size:13px;padding:5px 0;line-height:1.5;}
+.emer-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.emer-row:last-child{border:none;}
+.emer-btn{background:linear-gradient(135deg,#EF4444,#F97316);color:#fff;border-radius:10px;padding:6px 14px;font-weight:800;font-size:12px;cursor:pointer;border:none;font-family:var(--font);text-decoration:none;}
+
+/* ═══ LANGUAGE SELECTOR ═══ */
+.lang-menu{position:fixed;top:60px;left:10px;background:var(--card);border-radius:16px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:600;display:flex;flex-direction:column;gap:4px;min-width:150px;animation:popUp .2s ease;}
+.lang-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:700;border:none;background:none;font-family:var(--font);width:100%;text-align:right;}
+.lang-item:hover{background:var(--bg);}
+.lang-item.active{background:#EFF6FF;color:var(--blue);}
+
+/* ═══ ACCESSIBILITY PANEL ═══ */
+.acc-fab{position:fixed;left:14px;bottom:80px;z-index:400;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#6D28D9);color:#fff;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(139,92,246,.5);}
+.acc-panel{position:fixed;left:14px;bottom:140px;z-index:600;background:var(--card);border-radius:20px;padding:16px;box-shadow:0 8px 40px rgba(0,0,0,.2);width:220px;animation:slideUp .25s ease;}
+.acc-panel h3{font-size:14px;font-weight:800;margin-bottom:12px;color:var(--text);}
+.acc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--text);}
+.acc-btns{display:flex;gap:6px;}
+.acc-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);}
+.acc-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.acc-toggle{width:44px;height:24px;border-radius:12px;background:#CBD5E1;border:none;cursor:pointer;position:relative;transition:background .2s;}
+.acc-toggle.on{background:var(--blue);}
+.acc-toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;}
+.acc-toggle.on::after{left:23px;}
+
+/* ═══ AI CHAT ═══ */
+.chat-fab{position:fixed;right:14px;bottom:80px;z-index:400;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,99,235,.5);}
+.chat-fab .chat-badge{position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:#EF4444;border:2px solid #fff;animation:pulse 2s infinite;}
+.chat-panel{position:fixed;right:14px;bottom:140px;z-index:600;background:var(--card);border-radius:20px;box-shadow:0 8px 40px rgba(0,0,0,.2);width:min(320px,calc(100vw-28px));display:flex;flex-direction:column;max-height:420px;animation:slideUp .25s ease;overflow:hidden;}
+.chat-head{background:linear-gradient(135deg,#2563EB,#0EA5E9);padding:12px 14px;display:flex;align-items:center;gap:10px;border-radius:20px 20px 0 0;}
+.chat-head-ico{width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.chat-head-txt{color:#fff;font-weight:800;font-size:14px;}
+.chat-head-sub{color:rgba(255,255,255,.75);font-size:11px;}
+.chat-close{margin-right:auto;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:2px 6px;}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.chat-msg{max-width:85%;padding:9px 12px;border-radius:14px;font-size:13px;line-height:1.5;}
+.chat-msg.user{background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;align-self:flex-start;border-radius:14px 14px 4px 14px;}
+.chat-msg.ai{background:var(--bg);color:var(--text);align-self:flex-end;border-radius:14px 14px 14px 4px;border:1px solid var(--border);}
+.chat-msg.typing{background:var(--bg);color:var(--muted);align-self:flex-end;}
+.chat-input-row{display:flex;gap:7px;padding:10px 12px;border-top:1px solid var(--border);}
+.chat-input-row input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:20px;padding:8px 12px;font-size:13px;font-family:var(--font);outline:none;color:var(--text);}
+.chat-send{background:linear-gradient(135deg,#2563EB,#0EA5E9);color:#fff;border:none;border-radius:20px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0;}
+.api-key-box{padding:12px;background:var(--bg);margin:8px;border-radius:12px;font-size:12px;color:var(--muted);border:1px solid var(--border);}
+.api-key-box input{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12px;font-family:var(--font);outline:none;margin:6px 0;color:var(--text);}
+.api-key-box button{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes cardIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:none}}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes slideUp{0%{transform:translateY(100%)}100%{transform:none}}
+@keyframes popIn{0%{opacity:0;transform:translateX(-50%) scale(.65)}100%{opacity:1;transform:translateX(-50%) scale(1)}}
+@keyframes popUp{0%{opacity:0;transform:scale(.7)}100%{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+</style>
+</head>
+<body>
+<div id="install-banner"><p>💙 הוסף כנפיים למסך הבית!</p><button id="install-btn">התקן</button></div>
+<div id="root"></div>
+
+<!-- Floating buttons -->
+<button class="acc-fab" id="acc-fab" title="נגישות" aria-label="פתח תפריט נגישות">♿</button>
+<button class="chat-fab" id="chat-fab" title="עזרת AI" aria-label="פתח צ'אט AI">
+  💬<span class="chat-badge"></span>
+</button>
+
+<script>
+// ═══════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════
+const LANGS={
+  he:{dir:"rtl",font:"Heebo",
+    appName:"כנפיים",appSub:"מדריך צרכים מיוחדים",
+    search:"חפש טיפול, ארגון, מוגבלות...",
+    heroTitle:"מוצאים <b>את הדרך הנכונה</b><br>לכל ילד וכל משפחה",
+    heroSub:"מדריך מקיף לשירותים לאנשים עם צרכים מיוחדים – כולל 🧭 GPS, 💬 וואטסאפ ו-🤖 AI",
+    all:"הכל",services:"שירותים",categories:"קטגוריות",
+    saved:"שמורים",about:"אודות",home:"בית",
+    call:"חייג",wa:"וואטסאפ",map:"קרוב אליי",site:"אתר",
+    save:"שמור",saved2:"שמור",
+    tipTitle:"טיפ חשוב להורים",
+    tipText:"התחלה מוקדמת של טיפולים (לפני גיל 3) מביאה לתוצאות טובות הרבה יותר.",
+    allServices:"כל השירותים",noServices:"לא נמצאו שירותים",
+    noSaved:"לא שמרת שירותים עדיין",
+    gpsTitle:"מצא שירותים קרובים אליך",
+    gpsText:"האפליקציה תשתמש במיקומך לחפש שירותים קרובים ב-Google Maps.",
+    gpsOk:"📍 שתף מיקום",gpsSkip:"🗺️ בלי מיקום",gpsLoading:"מאתר מיקום...",
+    contact:"פרטי קשר ומיקום",aboutSvc:"על השירות",
+    verified:"✓ מאומת",removedFav:"הוסר מהשמורים",addedFav:"נשמר! ⭐",
+    installed:"הותקן! 🎉",
+    chatTitle:"עוזר כנפיים 🤖",chatSub:"שאל כל שאלה על שירותים",
+    chatPlaceholder:"שאל שאלה...",chatSend:"שלח",
+    chatWelcome:"שלום! אני עוזר כנפיים. אני יכול לעזור לך למצוא שירותים לצרכים מיוחדים. במה אוכל לעזור? 💙",
+    chatTyping:"מקליד...",chatApiKey:"מפתח API (Anthropic):",
+    chatApiSave:"שמור",chatApiHelp:"כדי להפעיל את עוזר ה-AI, הזן מפתח API מ-console.anthropic.com",
+    accTitle:"נגישות",accFontSize:"גודל טקסט",
+    accSmall:"קטן",accNormal:"רגיל",accLarge:"גדול",accXL:"ענק",
+    accContrast:"ניגודיות גבוהה",
+    legalTitle:"📋 הצהרה משפטית",
+    legalText:"המידע באפליקציה זו מיועד להכוונה בלבד ואינו מהווה ייעוץ רפואי, משפטי או פסיכולוגי. האפליקציה אינה למטרות רווח. אנו לא אחראים לשינויים בפרטי הארגונים. יש לאמת מידע ישירות מול הגוף הרלוונטי.",
+  },
+  en:{dir:"ltr",font:"Heebo",
+    appName:"Kanafayim",appSub:"Special Needs Guide",
+    search:"Search therapy, org, disability...",
+    heroTitle:"Finding <b>the right way</b><br>for every child & family",
+    heroSub:"Comprehensive guide to services for people with special needs – GPS 🧭, WhatsApp 💬 & AI 🤖",
+    all:"All",services:"Services",categories:"Categories",
+    saved:"Saved",about:"About",home:"Home",
+    call:"Call",wa:"WhatsApp",map:"Near Me",site:"Website",
+    save:"Save",saved2:"Saved",
+    tipTitle:"Important Tip for Parents",
+    tipText:"Starting therapy early (before age 3) leads to significantly better outcomes.",
+    allServices:"All Services",noServices:"No services found",
+    noSaved:"No saved services yet",
+    gpsTitle:"Find Nearby Services",
+    gpsText:"The app will use your location to search for nearby services on Google Maps.",
+    gpsOk:"📍 Share Location",gpsSkip:"🗺️ Without Location",gpsLoading:"Locating...",
+    contact:"Contact & Location",aboutSvc:"About This Service",
+    verified:"✓ Verified",removedFav:"Removed from saved",addedFav:"Saved! ⭐",
+    installed:"Installed! 🎉",
+    chatTitle:"Kanafayim AI 🤖",chatSub:"Ask anything about services",
+    chatPlaceholder:"Ask a question...",chatSend:"Send",
+    chatWelcome:"Hello! I'm the Kanafayim assistant. I can help you find services for special needs. How can I help? 💙",
+    chatTyping:"Typing...",chatApiKey:"API Key (Anthropic):",
+    chatApiSave:"Save",chatApiHelp:"To enable AI assistant, enter your API key from console.anthropic.com",
+    accTitle:"Accessibility",accFontSize:"Text Size",
+    accSmall:"Small",accNormal:"Normal",accLarge:"Large",accXL:"XL",
+    accContrast:"High Contrast",
+    legalTitle:"📋 Legal Disclaimer",
+    legalText:"Information in this app is for guidance only and does not constitute medical, legal or psychological advice. This app is non-profit. We are not responsible for changes in organization details. Please verify information directly with the relevant body.",
+  },
+  ar:{dir:"rtl",font:"Heebo",
+    appName:"أجنحة",appSub:"دليل الاحتياجات الخاصة",
+    search:"ابحث عن علاج، منظمة، إعاقة...",
+    heroTitle:"نجد <b>الطريق الصحيح</b><br>لكل طفل وعائلة",
+    heroSub:"دليل شامل للخدمات للأشخاص ذوي الاحتياجات الخاصة",
+    all:"الكل",services:"خدمات",categories:"فئات",
+    saved:"محفوظ",about:"حول",home:"الرئيسية",
+    call:"اتصل",wa:"واتساب",map:"قريب مني",site:"موقع",
+    save:"حفظ",saved2:"محفوظ",
+    tipTitle:"نصيحة مهمة للوالدين",
+    tipText:"بدء العلاج مبكراً (قبل سن 3) يؤدي إلى نتائج أفضل بكثير.",
+    allServices:"جميع الخدمات",noServices:"لم يتم العثور على خدمات",
+    noSaved:"لا توجد خدمات محفوظة بعد",
+    gpsTitle:"ابحث عن خدمات قريبة",
+    gpsText:"سيستخدم التطبيق موقعك للبحث عن الخدمات القريبة.",
+    gpsOk:"📍 مشاركة الموقع",gpsSkip:"🗺️ بدون موقع",gpsLoading:"تحديد الموقع...",
+    contact:"معلومات الاتصال",aboutSvc:"عن الخدمة",
+    verified:"✓ موثق",removedFav:"تمت الإزالة",addedFav:"تم الحفظ! ⭐",
+    installed:"تم التثبيت! 🎉",
+    chatTitle:"مساعد أجنحة 🤖",chatSub:"اسأل عن أي خدمة",
+    chatPlaceholder:"اكتب سؤالك...",chatSend:"إرسال",
+    chatWelcome:"مرحباً! أنا مساعد أجنحة. كيف يمكنني مساعدتك؟ 💙",
+    chatTyping:"يكتب...",chatApiKey:"مفتاح API:",
+    chatApiSave:"حفظ",chatApiHelp:"أدخل مفتاح API من console.anthropic.com",
+    accTitle:"إمكانية الوصول",accFontSize:"حجم النص",
+    accSmall:"صغير",accNormal:"عادي",accLarge:"كبير",accXL:"كبير جداً",
+    accContrast:"تباين عالٍ",
+    legalTitle:"📋 إخلاء المسؤولية",
+    legalText:"المعلومات في هذا التطبيق للتوجيه فقط وليست نصيحة طبية أو قانونية. التطبيق غير ربحي.",
+  },
+  am:{dir:"ltr",font:"Heebo",
+    appName:"ካናፋይም",appSub:"ለልዩ ፍላጎቶች መመሪያ",
+    search:"ፍለጋ...",
+    heroTitle:"<b>ትክክለኛውን መንገድ</b><br>ለእያንዳንዱ ልጅ ማግኘት",
+    heroSub:"ለልዩ ፍላጎት ያላቸው ሰዎች አጠቃላይ አገልግሎቶች",
+    all:"ሁሉ",services:"አገልግሎቶች",categories:"ምድቦች",
+    saved:"ተቀምጧል",about:"ስለ",home:"ቤት",
+    call:"ደውል",wa:"WhatsApp",map:"ቅርብ",site:"ድረ-ገጽ",
+    save:"አስቀምጥ",saved2:"ተቀምጧል",
+    tipTitle:"ለወላጆች ምክር",
+    tipText:"ቀደም ሲል ህክምና መጀመር (ከ3 ዓመት በፊት) የተሻሉ ውጤቶችን ያስገኛል።",
+    allServices:"ሁሉም አገልግሎቶች",noServices:"አልተገኘም",
+    noSaved:"ምንም አልተቀመጠም",
+    gpsTitle:"ቅርብ አገልግሎቶች",
+    gpsText:"አፕ ቦታዎን ይጠቀማል።",
+    gpsOk:"📍 ቦታ አጋራ",gpsSkip:"🗺️ ያለ ቦታ",gpsLoading:"በማስላት...",
+    contact:"አድራሻ",aboutSvc:"ስለ አገልግሎቱ",
+    verified:"✓ የተረጋገጠ",removedFav:"ተወግዷል",addedFav:"ተቀምጧል! ⭐",
+    installed:"ተጭኗል! 🎉",
+    chatTitle:"AI ረዳት 🤖",chatSub:"ጥያቄ ጠይቅ",
+    chatPlaceholder:"ጥያቄ ጻፍ...",chatSend:"ላክ",
+    chatWelcome:"ሰላም! እኔ ረዳት ነኝ። እንዴት ልረዳ? 💙",
+    chatTyping:"በመጻፍ...",chatApiKey:"API Key:",
+    chatApiSave:"አስቀምጥ",chatApiHelp:"API key ከ console.anthropic.com",
+    accTitle:"ተደራሽነት",accFontSize:"የጽሑፍ መጠን",
+    accSmall:"ትንሽ",accNormal:"መደበኛ",accLarge:"ትልቅ",accXL:"ትልቅ ሁለት",
+    accContrast:"ከፍተኛ ንፅፅር",
+    legalTitle:"📋 የህግ ማስታወቂያ",
+    legalText:"መረጃው ለመመሪያ ብቻ ነው። ህክምና አይደለም።",
+  },
+  ru:{dir:"ltr",font:"Heebo",
+    appName:"Канафаим",appSub:"Путеводитель особых потребностей",
+    search:"Поиск терапии, организации...",
+    heroTitle:"Находим <b>правильный путь</b><br>для каждого ребёнка и семьи",
+    heroSub:"Полный справочник услуг для людей с особыми потребностями – GPS 🧭, WhatsApp 💬 и AI 🤖",
+    all:"Все",services:"Услуги",categories:"Категории",
+    saved:"Сохранено",about:"О нас",home:"Главная",
+    call:"Позвонить",wa:"WhatsApp",map:"Рядом со мной",site:"Сайт",
+    save:"Сохранить",saved2:"Сохранено",
+    tipTitle:"Важный совет для родителей",
+    tipText:"Начало терапии в раннем возрасте (до 3 лет) даёт значительно лучшие результаты.",
+    allServices:"Все услуги",noServices:"Услуги не найдены",
+    noSaved:"Нет сохранённых услуг",
+    gpsTitle:"Найти ближайшие услуги",
+    gpsText:"Приложение использует ваше местоположение для поиска ближайших услуг.",
+    gpsOk:"📍 Поделиться геолокацией",gpsSkip:"🗺️ Без геолокации",gpsLoading:"Определение местоположения...",
+    contact:"Контакты и адрес",aboutSvc:"Об услуге",
+    verified:"✓ Проверено",removedFav:"Удалено из сохранённых",addedFav:"Сохранено! ⭐",
+    installed:"Установлено! 🎉",
+    chatTitle:"Помощник Канафаим 🤖",chatSub:"Задайте вопрос об услугах",
+    chatPlaceholder:"Задайте вопрос...",chatSend:"Отправить",
+    chatWelcome:"Здравствуйте! Я помощник Канафаим. Помогу найти услуги для особых потребностей. Как я могу помочь? 💙",
+    chatTyping:"Печатает...",chatApiKey:"API ключ (Anthropic):",
+    chatApiSave:"Сохранить",chatApiHelp:"Введите API ключ с console.anthropic.com для активации AI",
+    accTitle:"Доступность",accFontSize:"Размер текста",
+    accSmall:"Малый",accNormal:"Обычный",accLarge:"Большой",accXL:"Очень большой",
+    accContrast:"Высокий контраст",
+    legalTitle:"📋 Правовая оговорка",
+    legalText:"Информация в этом приложении предназначена только для ориентирования и не является медицинской или юридической консультацией. Приложение некоммерческое.",
+  },
+  es:{dir:"ltr",font:"Heebo",
+    appName:"Kanafayim",appSub:"Guía de Necesidades Especiales",
+    search:"Buscar terapia, organización...",
+    heroTitle:"Encontrando <b>el camino correcto</b><br>para cada niño y familia",
+    heroSub:"Guía completa de servicios para personas con necesidades especiales – GPS 🧭, WhatsApp 💬 e IA 🤖",
+    all:"Todo",services:"Servicios",categories:"Categorías",
+    saved:"Guardado",about:"Acerca de",home:"Inicio",
+    call:"Llamar",wa:"WhatsApp",map:"Cerca de mí",site:"Sitio web",
+    save:"Guardar",saved2:"Guardado",
+    tipTitle:"Consejo importante para padres",
+    tipText:"Comenzar la terapia temprano (antes de los 3 años) conduce a resultados significativamente mejores.",
+    allServices:"Todos los servicios",noServices:"No se encontraron servicios",
+    noSaved:"No hay servicios guardados",
+    gpsTitle:"Encontrar servicios cercanos",
+    gpsText:"La app usará tu ubicación para buscar servicios cercanos en Google Maps.",
+    gpsOk:"📍 Compartir ubicación",gpsSkip:"🗺️ Sin ubicación",gpsLoading:"Localizando...",
+    contact:"Contacto y ubicación",aboutSvc:"Sobre este servicio",
+    verified:"✓ Verificado",removedFav:"Eliminado de guardados",addedFav:"¡Guardado! ⭐",
+    installed:"¡Instalado! 🎉",
+    chatTitle:"Asistente Kanafayim 🤖",chatSub:"Pregunta sobre cualquier servicio",
+    chatPlaceholder:"Haz una pregunta...",chatSend:"Enviar",
+    chatWelcome:"¡Hola! Soy el asistente de Kanafayim. Puedo ayudarte a encontrar servicios para necesidades especiales. ¿En qué puedo ayudarte? 💙",
+    chatTyping:"Escribiendo...",chatApiKey:"Clave API (Anthropic):",
+    chatApiSave:"Guardar",chatApiHelp:"Ingresa tu clave API de console.anthropic.com para activar el asistente AI",
+    accTitle:"Accesibilidad",accFontSize:"Tamaño de texto",
+    accSmall:"Pequeño",accNormal:"Normal",accLarge:"Grande",accXL:"Muy grande",
+    accContrast:"Alto contraste",
+    legalTitle:"📋 Aviso Legal",
+    legalText:"La información en esta app es solo orientativa y no constituye asesoramiento médico, legal o psicológico. La app es sin fines de lucro.",
+  }
+};
+
+// ═══════════════════════════════════════
+// CATEGORIES
+// ═══════════════════════════════════════
+const CATS=[
+  {id:"all",lbl_he:"הכל",lbl_en:"All",lbl_ar:"الكل",lbl_am:"ሁሉ",lbl_ru:"Все",lbl_es:"Todo",em:"🌟",col:"#2563EB"},
+  {id:"therapy",lbl_he:"טיפולים",lbl_en:"Therapy",lbl_ar:"علاجات",lbl_am:"ህክምና",lbl_ru:"Терапия",lbl_es:"Terapia",em:"🧠",col:"#8B5CF6"},
+  {id:"creative",lbl_he:"טיפול יצירתי",lbl_en:"Creative",lbl_ar:"إبداعي",lbl_am:"ፈጠራ",lbl_ru:"Творческий",lbl_es:"Creativo",em:"🎵",col:"#EC4899"},
+  {id:"sensory",lbl_he:"ויסות חושי",lbl_en:"Sensory",lbl_ar:"حسي",lbl_am:"ስሜት",lbl_ru:"Сенсорный",lbl_es:"Sensorial",em:"🌀",col:"#06B6D4"},
+  {id:"medical",lbl_he:"רפואה ושיניים",lbl_en:"Medical",lbl_ar:"طبي",lbl_am:"ህክምና",lbl_ru:"Медицина",lbl_es:"Médico",em:"🏥",col:"#EF4444"},
+  {id:"animal",lbl_he:"בעלי חיים",lbl_en:"Animals",lbl_ar:"حيوانات",lbl_am:"እንስሳት",lbl_ru:"Животные",lbl_es:"Animales",em:"🐴",col:"#10B981"},
+  {id:"education",lbl_he:"חינוך",lbl_en:"Education",lbl_ar:"تعليم",lbl_am:"ትምህርት",lbl_ru:"Образование",lbl_es:"Educación",em:"📚",col:"#F59E0B"},
+  {id:"social",lbl_he:"חברה ושילוב",lbl_en:"Social",lbl_ar:"اجتماعي",lbl_am:"ማህበራዊ",lbl_ru:"Социальный",lbl_es:"Social",em:"🤝",col:"#F97316"},
+  {id:"recreation",lbl_he:"פנאי וספורט",lbl_en:"Recreation",lbl_ar:"ترفيه",lbl_am:"መዝናኛ",lbl_ru:"Досуг",lbl_es:"Recreación",em:"⚽",col:"#84CC16"},
+];
+
+// ═══════════════════════════════════════
+// SERVICES DATA (verified & fixed)
+// ═══════════════════════════════════════
+const SVC=[
+  {id:1,cat:"therapy",em:"🖐️",col:"#8B5CF6",nm:"ריפוי בעיסוק (OT)",org:"החברה הישראלית לריפוי בעיסוק",tags:["אוטיזם","עיכוב התפתחותי","כישורי יומיום"],desc:"מפתח עצמאות בפעולות יומיום: אכילה, לבוש, כתיבה ועיבוד חושי.",loc:"כלל הארץ",phone:"",wa:"",web:"https://isot.org.il",mapq:"מרפאה ריפוי בעיסוק ילדים",verified:true,full:"ריפוי בעיסוק מתמקד בפיתוח עצמאות ומיומנויות חיי יומיום. מתאים לאוטיזם, עיכובים התפתחותיים, שיתוק מוחין ולקויות למידה."},
+  {id:2,cat:"therapy",em:"💬",col:"#0EA5E9",nm:"קלינאות תקשורת (ST)",org:"האיגוד הישראלי לקלינאות תקשורת",tags:["דיבור","שפה","AAC","גמגום"],desc:"משפרת תקשורת, דיבור ושפה. כוללת עזרים לילדים שאינם מדברים.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.ishla.org.il",mapq:"קלינאות תקשורת ילדים",verified:true,full:"קלינאות תקשורת עוסקת בהפרעות דיבור, שפה, קול ובליעה. לילדים עם אוטיזם, שיתוק מוחין או תסמונת דאון, מסייעת בתקשורת מוגברת חלופית (AAC)."},
+  {id:3,cat:"therapy",em:"🦵",col:"#10B981",nm:"פיזיותרפיה לילדים (PT)",org:"האגודה הישראלית לפיזיותרפיה",tags:["מוטוריקה גסה","שיתוק מוחין","שיווי משקל"],desc:"מפתחת הליכה, שיווי משקל וכוח שרירים.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.ipts.org.il",mapq:"פיזיותרפיה ילדים צרכים מיוחדים",verified:true,full:"פיזיותרפיה פדיאטרית מתמקדת בשיפור כוח, גמישות, שיווי משקל ותנועה. מתאים לשיתוק מוחין ועיכובים מוטוריים."},
+  {id:4,cat:"therapy",em:"🎯",col:"#F59E0B",nm:"טיפול ABA",org:"אלו\"ט – העמותה המובילה לאוטיזם",tags:["אוטיזם","ADHD","התנהגות"],desc:"ניתוח התנהגות יישומי – מבוסס ראיות מדעיות. יעיל בגיל צעיר.",loc:"כלל הארץ",phone:"03-6491545",wa:"",web:"https://alut.org.il",mapq:"מרכז ABA אוטיזם",verified:true,full:"ABA הוא טיפול מוכח מדעית לאוטיזם. מחקרים מראים שהתחלה לפני גיל 5 מביאה לשיפורים משמעותיים."},
+  {id:5,cat:"therapy",em:"🧘",col:"#EC4899",nm:"פסיכולוגיה ילדים",org:"ההסתדרות הפסיכולוגית בישראל",tags:["חרדה","CBT","טיפול במשחק"],desc:"תמיכה רגשית ונפשית לילדים ולמשפחה.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.psychology.org.il",mapq:"פסיכולוג ילדים צרכים מיוחדים",verified:true,full:"פסיכולוגיה ילדים מספקת תמיכה רגשית-נפשית. שיטות: טיפול במשחק, CBT, DIR/Floortime ו-EMDR."},
+  {id:6,cat:"therapy",em:"🌊",col:"#0EA5E9",nm:"הידרותרפיה",org:"ALEH – ארגון שיקום לאומי",tags:["שיתוק מוחין","כאב","גמישות"],desc:"טיפול פיזיותרפי במים. מפחית כאב, משפר גמישות ומוטוריקה.",loc:"ירושלים, בני ברק, נגב",phone:"02-6799555",wa:"",web:"https://aleh.org/en",mapq:"הידרותרפיה שיקום ילדים",verified:true,full:"הידרותרפיה משתמשת בסגולות המים לשיפור תפקוד פיזי. ארגון ALEH מספק הידרותרפיה לילדים עם מגבלות קשות."},
+  {id:7,cat:"creative",em:"🎵",col:"#EC4899",nm:"מוזיקותרפיה",org:'יה"ת – האיגוד הישראלי לאמנויות יצירתיות',tags:["אוטיזם","רגשות","תקשורת","ADHD"],desc:"שימוש במוזיקה כטיפול. משפרת תקשורת וביטוי רגשי.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.yahat.org",mapq:"מוזיקותרפיה ילדים",verified:true,full:'מוזיקותרפיה בישראל פועלת תחת יה"ת שנוסד ב-1971. קיימים 7,000 מטפלי אמנות יצירתית. המוזיקה ככלי לשיפור תקשורת ופיתוח קוגניטיבי.'},
+  {id:8,cat:"creative",em:"🎨",col:"#F97316",nm:"אמנות טיפולית",org:'יה"ת – אמנות חזותית',tags:["ביטוי עצמי","טראומה","חרדה"],desc:"ציור, פיסול ואמנות כשפת טיפול.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.yahat.org",mapq:"אמנות טיפולית ילדים",verified:true,full:"אמנות טיפולית מאפשרת לילדים לבטא רגשות וטראומה דרך יצירה. יעיל לאוטיזם, PTSD וחרדה."},
+  {id:9,cat:"creative",em:"💃",col:"#A855F7",nm:"טיפול בתנועה וריקוד",org:'יה"ת – תנועה',tags:["גוף ונפש","ביטוי","מוטוריקה"],desc:"תנועה וריקוד ככלי טיפולי. מחבר גוף ונפש.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.yahat.org",mapq:"טיפול תנועה ריקוד",verified:false,full:"טיפול בתנועה-ריקוד משתמש בתנועה לטיפול נפשי-גופני. מתאים לאוטיזם ושיתוק מוחין."},
+  {id:10,cat:"creative",em:"🎭",col:"#F43F5E",nm:"דרמה טיפולית",org:'יה"ת – דרמה',tags:["מיומנויות חברתיות","פחדים"],desc:"משחק תפקידים ודרמה. בונה מיומנויות חברתיות.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.yahat.org",mapq:"דרמה טיפולית ילדים",verified:false,full:"דרמה טיפולית משתמשת בשחקנות ותפקידים לפיתוח מיומנויות חברתיות. יעיל לאוטיזם וטראומה."},
+  {id:11,cat:"sensory",em:"🌀",col:"#06B6D4",nm:"ויסות חושי (SI)",org:"מרפאות ריפוי בעיסוק מיוחדות",tags:["עיבוד חושי","SPD","אוטיזם"],desc:"טיפול בהפרעות עיבוד חושי. חדרים חושיים ודיאטה חושית.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.sulamisrael.org",mapq:"ויסות חושי ילדים",verified:true,full:"ויסות חושי (Sensory Integration) מטפל בקשיי עיבוד גירויים. הטיפול כולל חדרי חושים ודיאטה חושית יומית. יעיל לאוטיזם, ADHD ו-SPD."},
+  {id:12,cat:"sensory",em:"🫂",col:"#10B981",nm:"לחץ עמוק (Deep Pressure)",org:"מרפאות OT מיוחדות",tags:["ויסות","הרגעה","שמיכות כובד"],desc:"טכניקת לחץ עמוק להרגעה. שמיכות כובד ואפודים.",loc:"כלל הארץ",phone:"",wa:"",web:"https://en.beitissie.org.il",mapq:"ריפוי בעיסוק ויסות חושי",verified:true,full:"טיפול בלחץ עמוק משתמש בלחץ גופני להרגעת מערכת העצבים. כולל שמיכות כובד ואפוד כבד. יעיל לאוטיזם ו-ADHD."},
+  {id:13,cat:"sensory",em:"🧸",col:"#F59E0B",nm:"חדר סנוזלן",org:"מרכזי שיקום ובתי ספר",tags:["חושים","הרגעה","אוטיזם"],desc:"חדר גירוי רב-חושי. מרגיע, ממריץ ומחבר.",loc:"כלל הארץ",phone:"",wa:"",web:"https://aleh.org/en",mapq:"חדר סנוזלן",verified:true,full:"חדר סנוזלן מספק גירויים חושיים בסביבה בטוחה. מתאים לילדים עם מוגבלויות קשות ואוטיזם."},
+  {id:14,cat:"sensory",em:"🫧",col:"#0EA5E9",nm:"חדר משחק חושי",org:"מרכזים טיפוליים",tags:["כיף","חושים","ויסות"],desc:"בריכות כדורים, מנהרות – ויסות דרך משחק.",loc:"כלל הארץ",phone:"",wa:"",web:"https://en.beitissie.org.il",mapq:"חדר משחק חושי ילדים",verified:false,full:"חדרי משחק חושי מספקים סביבה עשירה בגירויים. יעיל לאוטיזם ועיכובים התפתחותיים."},
+  {id:15,cat:"medical",em:"🦷",col:"#EF4444",nm:"שיניים מיוחדות – הדסה",org:"הדסה עין כרם, ירושלים",tags:["הרדמה","מוגבלות","ילדים"],desc:"יחידה לרפואת שיניים לאנשים עם מוגבלות. הרדמה כללית.",loc:"ירושלים",phone:"02-6776000",wa:"",web:"https://www.hadassah.org.il",mapq:"Hadassah Ein Kerem Jerusalem dental special needs",verified:true,full:"הדסה עין כרם מפעיל יחידה מיוחדת לרפואת שיניים. מציע טיפולים בהרדמה כללית וסדציה לאנשים עם מוגבלות."},
+  {id:16,cat:"medical",em:"🏥",col:"#EF4444",nm:"שיניים מיוחדות – איכילוב",org:"מרכז רפואי תל-אביב (איכילוב)",tags:["הרדמה","תל אביב","ילדים"],desc:"מרפאת שיניים לבעלי מוגבלות. הזמנות דרך קופות החולים.",loc:"תל אביב",phone:"03-6974444",wa:"",web:"https://www.tasmc.org.il",mapq:"Ichilov Hospital Tel Aviv dental disability",verified:true,full:"בית החולים איכילוב מפעיל מחלקת שיניים לאנשים עם מוגבלות. הטיפול ניתן בהרדמה כללית."},
+  {id:17,cat:"medical",em:"👨‍⚕️",col:"#6D28D9",nm:"בית לוינשטיין – שיקום",org:"מרכז שיקום לאומי, רעננה",tags:["שיקום","נוירו","TBI"],desc:"מרכז שיקום מוביל לילדים עם פגיעות נוירולוגיות.",loc:"רעננה",phone:"09-7709000",wa:"",web:"https://www.reuth.org.il",mapq:"Beit Loewenstein Raanana rehabilitation",verified:true,full:"בית לוינשטיין מוביל שיקום לילדים עם פגיעות מוחיות, שבץ וטראומה. מציע PT, OT, ST ונוירופסיכולוגיה."},
+  {id:18,cat:"medical",em:"🧬",col:"#EF4444",nm:"מרכז מילמן – אוטיזם חיפה",org:"עמותת נצר, חיפה",tags:["אוטיזם","אבחון","הורים"],desc:"מרכז מתמחה לאוטיזם בחיפה וכרמיאל.",loc:"חיפה וכרמיאל",phone:"04-8386060",wa:"",web:"https://www.milman-center.org.il",mapq:"מרכז אוטיזם חיפה",verified:true,full:"מרכז מילמן הוקם ב-1992. מתמחה בטיפול ואבחון אוטיזם עם צוות רב-תחומי."},
+  {id:19,cat:"animal",em:"🐴",col:"#10B981",nm:"רכיבה טיפולית",org:"המרכז לרכיבה טיפולית בישראל – תל מונד",tags:["שיתוק מוחין","אוטיזם","גוף","רגשות"],desc:"טיפול בסוסים. משפר יכולות גופניות, רגשיות וחברתיות.",loc:"תל מונד",phone:"09-7965880",wa:"",web:"https://www.trci.org.il",mapq:"רכיבה טיפולית ישראל",verified:true,full:"היפותרפיה משתמשת בתנועת הסוס לשיפור שיווי משקל, כוח שרירים ותיאום."},
+  {id:20,cat:"animal",em:"🐬",col:"#0EA5E9",nm:"דולפינותרפיה – אילת",org:"דולפין ריף אילת",tags:["אוטיזם","שיתוק מוחין","שחייה"],desc:"שחייה עם דולפינים. מוכר כמשפר תקשורת ורגשות.",loc:"אילת",phone:"08-6300100",wa:"",web:"https://www.dolphinreef.co.il",mapq:"Dolphin Reef Eilat Israel",verified:true,full:"הדולפין ריף מציע תוכנית טיפולית לילדים עם צרכים מיוחדים. מגע עם דולפינים משפר תקשורת וריכוז."},
+  {id:21,cat:"animal",em:"🐕",col:"#F97316",nm:"טיפול בכלבים",org:"KLAVIM – כלבנות טיפולית",tags:["חרדה","אוטיזם","חברתי"],desc:"כלבים מאומנים לסיוע רגשי. מפחיתים חרדה.",loc:"רעננה וכפר טרומן",phone:"052-3236360",wa:"972523236360",web:"https://klavim.org",mapq:"כלבנות טיפולית ישראל",verified:false,full:"טיפול בסיוע כלבים הוכח כיעיל להפחתת חרדה ושיפור מיומנויות חברתיות. מתאים לאוטיזם ו-PTSD."},
+  {id:22,cat:"education",em:"🌺",col:"#EC4899",nm:"בית איזי שפירא",org:"ראשון לציון – עמותה מובילה",tags:["חדשנות","הכלה","יועץ ONU"],desc:"הארגון הישראלי המוביל לחדשנות. יועץ לאו\"ם. חצי מיליון איש בשנה.",loc:"ראשון לציון",phone:"09-7709000",wa:"",web:"https://en.beitissie.org.il",mapq:"בית איזי שפירא ראשון לציון",verified:true,full:"בית איזי שפירא מפתח ומספק שירותים חדשניים. מוכר כ'עמותה הישראלית היעילה ביותר'."},
+  {id:23,cat:"education",em:"💛",col:"#F59E0B",nm:"מרכז שלווה – SHALVA",org:"ירושלים וגוש עציון",tags:["תסמונת דאון","הורים","חינוך"],desc:"תמיכה לילדים ולמשפחות. חינוכי, טיפולי, הקלה להורים.",loc:"ירושלים",phone:"02-6519555",wa:"",web:"https://www.shalva.org",mapq:"Shalva Jerusalem Israel",verified:true,full:"שלווה מספקת שירותי תמיכה לילדים עם מוגבלות ולמשפחותיהם. מדגישה כישורי חיים ושילוב חברתי."},
+  {id:24,cat:"education",em:"🏫",col:"#F59E0B",nm:"חינוך מיוחד – משרד החינוך",org:"ועדות השמה ותכנית חינוכית יחידנית (תח\"י)",tags:["כיתות שילוב","סייעת","תח\"י"],desc:"מסגרות חינוך ייחודיות. ועדת השמה, תח\"י, כיתות קטנות.",loc:"כלל הארץ",phone:"02-5603222",wa:"",web:"https://edu.gov.il",mapq:"חינוך מיוחד ישראל",verified:true,full:"חינוך מיוחד בישראל מוסדר בחוק. ילדים זכאים לוועדת השמה, תוכנית חינוכית יחידנית ולשירותי עזר."},
+  {id:25,cat:"education",em:"🧩",col:"#8B5CF6",nm:"מרכז Sulam ישראל",org:"ירושלים – פועל מ-1981",tags:["אוטיזם","תסמונת דאון","686+ ילדים"],desc:"שירותים חינוכיים וטיפוליים. 686+ ילדים בגילאי 6 חודשים–17.",loc:"ירושלים",phone:"",wa:"",web:"https://sulamisrael.org",mapq:"Sulam Jerusalem Israel special needs",verified:true,full:"Sulam הוקם ב-1981 ומספק שירותי חינוך וטיפול לילדים עם מגוון מוגבלויות."},
+  {id:26,cat:"social",em:"💙",col:"#2563EB",nm:"אלו\"ט – אוטיזם ישראל",org:"עמותה ל\"מ מובילה – פועלת מ-1974",tags:["אוטיזם","זכויות","תעסוקה","מגורים"],desc:"הארגון המוביל בישראל לאוטיזם. חינוך, תעסוקה ומגורים.",loc:"כלל הארץ",phone:"03-6491545",wa:"",web:"https://alut.org.il",mapq:"אלוט אוטיזם ישראל",verified:true,full:"אלו\"ט פועלת להבטחת רווחת ועתיד אנשים עם אוטיזם. מפעילה גנים, בתי ספר, מרכזי תעסוקה ו-20+ בתי מגורים."},
+  {id:27,cat:"social",em:"🌿",col:"#10B981",nm:"אקים – מוגבלות שכלית",org:"הארגון הגדול ביותר בישראל",tags:["מוגבלות שכלית","34,000 לקוחות"],desc:"הארגון הגדול ביותר למוגבלות שכלית. 34,000 לקוחות.",loc:"כלל הארץ",phone:"03-9008555",wa:"",web:"https://akim.org.il",mapq:"אקים מוגבלות שכלית ישראל",verified:true,full:"אקים הוא הארגון הגדול ביותר לשירותי מוגבלות שכלית. מציע חינוך, מגורים, תעסוקה ופנאי."},
+  {id:28,cat:"social",em:"🤲",col:"#F97316",nm:"יד שרה",org:"ארגון ההתנדבות הגדול ביותר",tags:["ציוד רפואי","חינם","הסעות"],desc:"ציוד רפואי, הסעות ותמיכה לנכים – בחינם. ענף בכל עיר.",loc:"כלל הארץ",phone:"02-6444444",wa:"",web:"https://yad-sarah.net",mapq:"יד שרה",verified:true,full:"יד שרה היא ארגון ההתנדבות הגדול ביותר בישראל. ציוד רפואי להשאלה, הסעות ושירותים – בחינם."},
+  {id:29,cat:"social",em:"📞",col:"#8B5CF6",nm:"Caregivers Israel",org:"תמיכת הורים ומטפלים",tags:["הורים","תמיכה","זכויות","וואטסאפ"],desc:"ייעוץ ותמיכה למשפחות ומטפלים. גם בוואטסאפ – בחינם!",loc:"ארצי",phone:"055-9993311",wa:"972559993311",web:"https://azarim.org.il",mapq:"",verified:true,full:"Caregivers Israel מציעה ייעוץ ותמיכה רגשית. שירות בטלפון ובוואטסאפ (055-9993311) א'-ה' 8:00-17:00. חינם לחלוטין."},
+  {id:30,cat:"recreation",em:"🏅",col:"#84CC16",nm:"ספורט לנכים – ועד אולימפי",org:"הוועד האולימפי הישראלי לנכים",tags:["שחייה","כדורסל","אתלטיקה"],desc:"ספורט תחרותי ופנאי לאנשים עם מוגבלות בכל הארץ.",loc:"כלל הארץ",phone:"03-6493132",wa:"",web:"https://isad.org.il",mapq:"ספורט לנכים ישראל",verified:true,full:"הוועד האולימפי הישראלי לנכים מפעיל ענפי ספורט: שחייה, כדורסל בכיסא גלגלים, אתלטיקה ועוד."},
+  {id:31,cat:"recreation",em:"🌲",col:"#10B981",nm:"LOTEM – טבע נגיש",org:"LOTEM – נגישות לטבע",tags:["טיול","נגישות","גלגלייה"],desc:"טיולים, מסלולים נגישים וסדנאות בטבע לאנשים עם מוגבלות.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.lotem.net",mapq:"LOTEM nature accessible Israel",verified:true,full:"LOTEM מתמחה בנגישות לטבע. מציעה מסלולים נגישים, גלגלאי שדה וסדנאות בעשרות אתרים."},
+  {id:32,cat:"recreation",em:"🎈",col:"#EC4899",nm:"שמחה לילד",org:"בתי חולים ומרכזי שיקום",tags:["בית חולים","ילדים חולים","שמחה"],desc:"מביאה שמחה לילדים חולים ומוגבלים. פנאי, מוזיקה ואומנות.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.simchalayeled.org.il",mapq:"שמחה לילד ישראל",verified:true,full:"שמחה לילד פועלת בבתי חולים ומרכזי שיקום. מציעה פעילויות פנאי, מוזיקה ואמנות."},
+  {id:33,cat:"recreation",em:"🫂",col:"#F97316",nm:"Friendship Circle Israel",org:"79 מיקומים ברחבי העולם",tags:["מתנדבים","נוער","חברות"],desc:"חברויות אמיתיות בין ילדים עם צרכים מיוחדים למתנדבי נוער.",loc:"כלל הארץ",phone:"",wa:"",web:"https://www.friendshipcircle.org",mapq:"Friendship Circle Israel",verified:true,full:"Friendship Circle יוצר חברויות בין ילדים עם צרכים מיוחדים למתנדבי נוער. 5,000 ילדים ו-11,000 מתנדבים ב-79 מיקומים."},
+];
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let S={
+  cat:"all",q:"",tab:"home",lang:"he",
+  saved:new Set(JSON.parse(localStorage.getItem("kn_saved")||"[]")),
+  modal:null,toast:null,tid:null,gps:null,
+  accOpen:false,chatOpen:false,langOpen:false,
+  hc:localStorage.getItem("kn_hc")==="1",
+  fs:localStorage.getItem("kn_fs")||"16px",
+  chatMsgs:[],chatLoading:false,
+  apiKey:localStorage.getItem("kn_api")||"",
+};
+
+// Apply saved accessibility settings
+document.documentElement.style.setProperty("--fs",S.fs);
+if(S.hc)document.body.classList.add("hc");
+
+// ═══════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════
+function T(){return LANGS[S.lang]||LANGS.he;}
+function el(tag,a={},html=""){const e=document.createElement(tag);for(const[k,v]of Object.entries(a))e.setAttribute(k,v);if(html)e.innerHTML=html;return e;}
+function catOf(id){return CATS.find(c=>c.id===id)||CATS[0];}
+function catLbl(c){return c[`lbl_${S.lang}`]||c.lbl_he;}
+function shown(){return SVC.filter(s=>{
+  if(S.cat!=="all"&&s.cat!==S.cat)return false;
+  if(S.q){const q=S.q.toLowerCase();return[s.nm,s.org,s.desc,...s.tags].some(t=>t.toLowerCase().includes(q));}
+  return true;
+});}
+function saveFavs(){localStorage.setItem("kn_saved",JSON.stringify([...S.saved]));}
+function toast(msg,em="✅"){if(S.tid)clearTimeout(S.tid);S.toast={msg,em};render();S.tid=setTimeout(()=>{S.toast=null;render();},2500);}
+function toggleSave(id){if(S.saved.has(id)){S.saved.delete(id);toast(T().removedFav,"💔");}else{S.saved.add(id);toast(T().addedFav);}saveFavs();render();}
+
+// ═══════════════════════════════════════
+// GPS
+// ═══════════════════════════════════════
+function openNearbyMap(svc){
+  if(!svc.mapq){toast("אין מיקום ספציפי","📍");return;}
+  S.gps={svc,loading:false};render();
+}
+function startGPS(svc){
+  S.gps={svc,loading:true};render();
+  if(!navigator.geolocation){openFallbackMap(svc);return;}
+  navigator.geolocation.getCurrentPosition(
+    pos=>{const{latitude:lat,longitude:lng}=pos.coords;
+      const url=`https://www.google.com/maps/search/${encodeURIComponent(svc.mapq)}/@${lat},${lng},13z`;
+      S.gps=null;render();window.open(url,"_blank");toast("מציג קרוב אליך 📍","🧭");},
+    ()=>openFallbackMap(svc),
+    {timeout:8000,maximumAge:60000,enableHighAccuracy:true}
+  );
+}
+function openFallbackMap(svc){
+  S.gps=null;render();
+  window.open(`https://www.google.com/maps/search/${encodeURIComponent(svc.mapq)}`,"_blank");
+  toast("פותח מפה כללית","🗺️");
+}
+
+// ═══════════════════════════════════════
+// RENDER (with search focus preservation)
+// ═══════════════════════════════════════
+function render(){
+  // Save search state before re-render
+  const existingInput=document.querySelector('.srch-wrap input');
+  const wasFocused=existingInput&&document.activeElement===existingInput;
+  const cursorPos=wasFocused?existingInput.selectionStart:0;
+
+  // Set lang direction
+  document.getElementById("html-root").setAttribute("dir",T().dir);
+  document.body.style.direction=T().dir;
+
+  const root=document.getElementById("root");
+  root.innerHTML="";
+  if(S.toast)root.appendChild(el("div",{class:"toast"},`<span style="font-size:19px">${S.toast.em}</span> ${S.toast.msg}`));
+  if(S.gps)root.appendChild(mkGpsPopup(S.gps));
+  if(S.modal)root.appendChild(mkModal(S.modal));
+  if(S.langOpen)document.body.appendChild(mkLangMenu()); else document.getElementById("lang-menu-el")?.remove();
+
+  root.appendChild(mkHeader());
+  root.appendChild(mkFilters());
+  const main=el("div",{class:"main"});
+  if(S.tab==="home")mkHome(main);
+  else if(S.tab==="saved")mkSaved(main);
+  else mkAbout(main);
+  root.appendChild(main);
+  root.appendChild(mkBnav());
+
+  // Restore search focus
+  if(wasFocused){
+    const newInput=document.querySelector('.srch-wrap input');
+    if(newInput){newInput.focus();try{newInput.setSelectionRange(cursorPos,cursorPos);}catch(e){}}
+  }
+}
+
+// ═══════════════════════════════════════
+// HEADER
+// ═══════════════════════════════════════
+function mkHeader(){
+  const h=el("header",{class:"hdr"});
+  const r=el("div",{class:"hdr-row"});
+  // Logo / Home button
+  const logo=el("div",{class:"logo-wrap",role:"button",tabindex:"0","aria-label":"חזור לדף הבית"});
+  logo.innerHTML=`<div class="logo-box">💙</div><div class="logo-txt"><div class="t1">${T().appName}</div><div class="t2">${T().appSub}</div></div>`;
+  const goHome=()=>{S.tab="home";S.q="";S.cat="all";render();window.scrollTo(0,0);};
+  logo.addEventListener("click",goHome);
+  logo.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" ")goHome();});
+  // Search
+  const sw=el("div",{class:"srch-wrap"});
+  const si=el("input",{type:"search",placeholder:T().search,value:S.q,"aria-label":T().search,autocomplete:"off"});
+  si.addEventListener("input",e=>{S.q=e.target.value;S.tab="home";renderGrid();});
+  si.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();S.q=si.value;S.tab="home";render();}});
+  const sico=el("span",{class:"srch-ico",role:"button","aria-label":"חפש",tabindex:"0"});
+  sico.textContent="🔍";
+  sico.addEventListener("click",()=>{S.q=document.querySelector('.srch-wrap input')?.value||S.q;S.tab="home";render();});
+  sw.appendChild(si);sw.appendChild(sico);
+  // Lang button
+  const lb=el("button",{class:"lang-btn","aria-label":"שנה שפה"});
+  lb.textContent={he:"🌐 שפה",en:"🌐 Lang",ar:"🌐 لغة",am:"🌐 ቋንቋ",ru:"🌐 Язык",es:"🌐 Idioma"}[S.lang]||"🌐";
+  lb.addEventListener("click",e=>{e.stopPropagation();S.langOpen=!S.langOpen;render();});
+  r.appendChild(logo);r.appendChild(sw);r.appendChild(el("div",{class:"hdr-actions"},"")); r.children[2].appendChild(lb);
+  h.appendChild(r);return h;
+}
+
+// ═══════════════════════════════════════
+// PARTIAL GRID UPDATE (no full re-render on search)
+// ═══════════════════════════════════════
+function renderGrid(){
+  const gridEl=document.querySelector(".grid");
+  const ttlEl=document.querySelector(".sec-ttl");
+  if(!gridEl||!ttlEl)return render();
+  const list=shown();
+  const c=catOf(S.cat);
+  const lbl=catLbl(c)===(T().all||"הכל")?T().allServices:catLbl(c);
+  ttlEl.innerHTML=`<span style="font-size:22px">${c.em}</span>${lbl} <span class="count-badge">${list.length}</span>`;
+  gridEl.innerHTML="";
+  if(!list.length){gridEl.innerHTML=`<div class="empty" style="grid-column:1/-1"><div class="ee">🔍</div><p>${T().noServices}</p></div>`;return;}
+  list.forEach((s,i)=>{const card=mkCard(s,i);gridEl.appendChild(card);});
+}
+
+function mkFilters(){
+  const fb=el("div",{class:"fbar"});const fi=el("div",{class:"fbar-in",role:"tablist"});
+  CATS.forEach(c=>{
+    const b=el("button",{class:"fcat"+(S.cat===c.id?" on":""),role:"tab","aria-selected":S.cat===c.id?"true":"false"});
+    b.innerHTML=`<span aria-hidden="true">${c.em}</span>${catLbl(c)}`;
+    if(S.cat===c.id)b.style.background=c.col;
+    b.addEventListener("click",()=>{S.cat=c.id;S.tab="home";S.q="";render();window.scrollTo(0,0);});
+    fi.appendChild(b);
+  });
+  fb.appendChild(fi);return fb;
+}
+
+function mkHome(main){
+  const bn=el("div",{class:"banner"});
+  bn.innerHTML=`<div class="bi">💡</div><div class="bt"><b>${T().tipTitle}</b>${T().tipText}</div>`;
+  main.appendChild(bn);
+  const list=shown();
+  const c=catOf(S.cat);
+  const lbl=catLbl(c)===(T().all||"הכל")?T().allServices:catLbl(c);
+  const ttl=el("div",{class:"sec-ttl"});
+  ttl.innerHTML=`<span style="font-size:22px">${c.em}</span>${lbl} <span class="count-badge">${list.length}</span>`;
+  main.appendChild(ttl);
+  if(!list.length){main.appendChild(el("div",{class:"empty"},`<div class="ee">🔍</div><p>${T().noServices}</p>`));return;}
+  const grid=el("div",{class:"grid"});
+  list.forEach((s,i)=>grid.appendChild(mkCard(s,i)));
+  main.appendChild(grid);
+}
+
+function mkSaved(main){
+  const list=SVC.filter(s=>S.saved.has(s.id));
+  const ttl=el("div",{class:"sec-ttl"});
+  ttl.innerHTML=`<span style="font-size:22px">⭐</span>${T().saved} <span class="count-badge">${list.length}</span>`;
+  main.appendChild(ttl);
+  if(!list.length){main.appendChild(el("div",{class:"empty"},`<div class="ee">⭐</div><p>${T().noSaved}</p>`));return;}
+  const grid=el("div",{class:"grid"});
+  list.forEach((s,i)=>grid.appendChild(mkCard(s,i)));
+  main.appendChild(grid);
+}
+
+function mkCard(s,i){
+  const c=el("div",{class:"card",role:"article",tabindex:"0"});
+  c.style.animationDelay=(i*.03)+"s";
+  const saved=S.saved.has(s.id);
+  const t=T();
+  c.innerHTML=`
+    <div class="card-top-bar" style="background:linear-gradient(90deg,${s.col},${s.col}88);"></div>
+    <div class="card-body">
+      <div class="card-head">
+        <div class="card-icon" style="background:${s.col}18;border:2px solid ${s.col}33;" aria-hidden="true">${s.em}</div>
+        <div class="card-ti">
+          <div class="cn">${s.nm}</div>
+          <div class="co">${s.org}</div>
+          ${s.verified?`<div class="vbadge">${t.verified}</div>`:""}
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="tag tag-cat" style="background:${s.col};">${catOf(s.cat).em} ${catLbl(catOf(s.cat))}</span>
+        ${s.tags.slice(0,2).map(tag=>`<span class="tag tag-plain">${tag}</span>`).join("")}
+      </div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="card-loc">📍 ${s.loc}</div>
+      <div class="card-acts">
+        ${s.phone?`<button class="act-btn act-call" data-a="call" data-v="${s.phone}" aria-label="חייג">📞 ${t.call}</button>`:""}
+        ${s.wa?`<button class="act-btn act-wa" data-a="wa" data-v="${s.wa}" aria-label="WhatsApp">💬 ${t.wa}</button>`:""}
+        ${s.mapq?`<button class="act-btn act-map" data-a="map" data-id="${s.id}" aria-label="${t.map}">🧭 ${t.map}</button>`:""}
+        ${s.web?`<button class="act-btn act-web" data-a="web" data-v="${s.web}" aria-label="${t.site}">🔗 ${t.site}</button>`:""}
+        <button class="act-btn act-save${saved?" on":""}" data-a="save" data-v="${s.id}" aria-label="${saved?t.saved2:t.save}">${saved?"⭐":"☆"}</button>
+      </div>
+    </div>`;
+  c.addEventListener("click",e=>{
+    const btn=e.target.closest("button[data-a]");
+    if(btn){
+      const{a,v,id}=btn.dataset;
+      if(a==="call"){window.open("tel:"+v);return;}
+      if(a==="wa"){window.open("https://wa.me/"+v);return;}
+      if(a==="map"){openNearbyMap(SVC.find(x=>x.id===+id));return;}
+      if(a==="web"){window.open(v,"_blank");return;}
+      if(a==="save"){toggleSave(parseInt(v));return;}
+    }
+    S.modal=s;render();
+  });
+  c.addEventListener("keydown",e=>{if(e.key==="Enter")c.click();});
+  return c;
+}
+
+function mkModal(s){
+  const t=T();
+  const ov=el("div",{class:"ov",role:"dialog","aria-modal":"true"});
+  const m=el("div",{class:"modal"});
+  const saved=S.saved.has(s.id);
+  m.innerHTML=`
+    <div class="modal-bar" style="background:linear-gradient(90deg,${s.col},${s.col}88);"></div>
+    <div class="modal-in">
+      <div class="m-handle" aria-hidden="true"></div>
+      <div class="m-head">
+        <div class="m-icon" style="background:${s.col}18;border:2px solid ${s.col}44;" aria-hidden="true">${s.em}</div>
+        <div>
+          <div class="m-title">${s.nm}</div>
+          <div class="m-sub">${s.org}${s.verified?` <span style="color:#059669;font-size:11px;">${t.verified}</span>`:""}</div>
+          <div class="card-tags" style="margin-top:5px;">
+            <span class="tag tag-cat" style="background:${s.col};">${catOf(s.cat).em} ${catLbl(catOf(s.cat))}</span>
+            ${s.tags.map(tag=>`<span class="tag tag-plain">${tag}</span>`).join("")}
+          </div>
+        </div>
+      </div>
+      <div class="m-sec"><h3>${t.aboutSvc}</h3><p>${s.full}</p></div>
+      <div class="m-sec">
+        <h3>${t.contact}</h3>
+        <div class="info-row"><span class="ii">📍</span>${s.loc}</div>
+        ${s.phone?`<div class="info-row"><span class="ii">📞</span><a href="tel:${s.phone}" style="color:var(--blue);font-weight:700;">${s.phone}</a></div>`:""}
+        ${s.wa?`<div class="info-row"><span class="ii">💬</span><a href="https://wa.me/${s.wa}" target="_blank" style="color:#25D366;font-weight:700;">WhatsApp</a></div>`:""}
+        ${s.web?`<div class="info-row"><span class="ii">🔗</span><a href="${s.web}" target="_blank" style="color:var(--blue);">${s.web.replace("https://","")}</a></div>`:""}
+      </div>
+    </div>`;
+  const acts=el("div",{class:"m-acts"});
+  if(s.phone){const b=el("button",{class:"m-btn mb-primary"});b.innerHTML=`📞 ${t.call}`;b.onclick=()=>window.open("tel:"+s.phone);acts.appendChild(b);}
+  if(s.wa){const b=el("button",{class:"m-btn mb-wa"});b.innerHTML=`💬 ${t.wa}`;b.onclick=()=>window.open("https://wa.me/"+s.wa);acts.appendChild(b);}
+  if(s.mapq){const b=el("button",{class:"m-btn mb-map"});b.innerHTML=`🧭 ${t.map}`;b.onclick=()=>{S.modal=null;openNearbyMap(s);};acts.appendChild(b);}
+  if(s.web){const b=el("button",{class:"m-btn mb-sec"});b.innerHTML=`🔗 ${t.site}`;b.onclick=()=>window.open(s.web,"_blank");acts.appendChild(b);}
+  const sv=el("button",{class:"m-btn mb-sec"});sv.innerHTML=saved?`⭐ ${t.saved2}`:`☆ ${t.save}`;sv.onclick=()=>{toggleSave(s.id);S.modal={...s};render();};acts.appendChild(sv);
+  m.appendChild(acts);
+  ov.onclick=e=>{if(e.target===ov){S.modal=null;render();}};
+  ov.appendChild(m);return ov;
+}
+
+function mkAbout(main){
+  const t=T();
+  main.innerHTML=`
+    <div class="about-card">
+      <div style="text-align:center;margin-bottom:12px;">
+        <div style="font-size:48px;">💙</div>
+        <h2 style="font-size:22px;font-weight:900;margin:6px 0 3px;">${t.appName}</h2>
+        <p style="color:var(--muted);font-size:13px;line-height:1.65;">${t.appSub}</p>
+      </div>
+    </div>
+    <div class="about-card">
+      <h3>📋 מה כולל המדריך?</h3>
+      ${["🧠 טיפולים: OT, ST, PT, ABA, פסיכולוגיה, הידרותרפיה","🎵 טיפול יצירתי: מוזיקה, אמנות, תנועה, דרמה","🌀 ויסות חושי: SI, סנוזלן, לחץ עמוק","🦷 שיניים מיוחדות – הרדמה כללית","🐴 בעלי חיים: רכיבה, דולפינים, כלבים","📚 חינוך מיוחד ומסגרות שיקום","🤝 ארגונים: אלו\"ט, אקים, יד שרה","⚽ פנאי: ספורט, טבע, חברות"].map(i=>`<div class="about-item"><span>${i}</span></div>`).join("")}
+    </div>
+    <div class="about-card" style="background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border-color:#FCA5A5;">
+      <h3 style="color:#B91C1C;">${t.legalTitle}</h3>
+      <p style="font-size:13px;line-height:1.7;color:#7F1D1D;">${t.legalText}</p>
+      <p style="font-size:12px;color:#9CA3AF;margin-top:8px;">© 2025 כנפיים | גרסה 3.0 | אינו למטרות רווח</p>
+    </div>
+    <div class="about-card" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#BFDBFE;">
+      <h3 style="color:#1E3A8A;">⚡ קווי חירום</h3>
+      ${[["101","מגן דוד אדום"],["105","ביטוח לאומי – נכויות"],["*2407","משרד הבריאות"],["1-800-20-23-23","זכויות חולה"],["055-9993311","Caregivers – הורים"]].map(([n,l])=>`<div class="emer-row"><span style="font-weight:700;">${l}</span><a href="tel:${n}" class="emer-btn">${n}</a></div>`).join("")}
+    </div>
+    <div class="about-card" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border-color:#86EFAC;">
+      <h3 style="color:#166534;">🏛️ קישורי זכויות חשובים</h3>
+      ${[
+        ["https://www.btl.gov.il","ביטוח לאומי – זכויות נכות","💰"],
+        ["https://www.gov.il/he/departments/ministry_of_welfare","משרד הרווחה","🏢"],
+        ["https://www.health.gov.il","משרד הבריאות","🏥"],
+        ["https://edu.gov.il/special-education","חינוך מיוחד – משרד החינוך","📚"],
+        ["https://www.nv.org.il","נציבות שוויון זכויות לאנשים עם מוגבלות","⚖️"],
+        ["https://www.kolzchut.org.il","כל זכות – מידע על זכויות","📋"],
+      ].map(([url,lbl,em])=>`<div class="emer-row"><span style="font-weight:700;">${em} ${lbl}</span><a href="${url}" target="_blank" class="emer-btn" style="background:linear-gradient(135deg,#16A34A,#15803D);font-size:11px;">כניסה</a></div>`).join("")}
+    </div>
+    <div style="text-align:center;color:#94A3B8;font-size:11px;padding:8px 0 30px;">המידע עודכן 2025 | לשיפורים – פנה אלינו</div>`;
+}
+
+function mkBnav(){
+  const t=T();
+  const n=el("nav",{class:"bnav","aria-label":"ניווט ראשי"});
+  [{id:"home",em:"🏠",lbl:t.home},{id:"saved",em:"⭐",lbl:t.saved},{id:"about",em:"ℹ️",lbl:t.about}].forEach(b=>{
+    const btn=el("button",{class:"nb"+(S.tab===b.id?" on":""),role:"tab","aria-selected":S.tab===b.id?"true":"false"});
+    btn.innerHTML=`<span class="ni" aria-hidden="true">${b.em}</span><span class="nl">${b.lbl}</span>${S.tab===b.id?`<div class="nb-dot" aria-hidden="true"></div>`:""}`;
+    btn.addEventListener("click",()=>{S.tab=b.id;render();window.scrollTo(0,0);});
+    n.appendChild(btn);
+  });
+  return n;
+}
+
+function mkGpsPopup({svc,loading}){
+  const t=T();
+  const ov=el("div",{class:"gps-ov",role:"dialog","aria-modal":"true"});
+  const box=el("div",{class:"gps-box"});
+  if(loading){
+    box.innerHTML=`<div class="gps-spin" aria-label="${t.gpsLoading}"></div><h3>${t.gpsLoading}</h3>`;
+  }else{
+    box.innerHTML=`
+      <span class="gps-icon" aria-hidden="true">🧭</span>
+      <h3>${t.gpsTitle}</h3>
+      <p class="gps-p">${t.gpsText}</p>
+      <div class="gps-svc">${svc.em} ${svc.nm}</div>
+      <div class="gps-btns">
+        <button class="gps-ok" id="g-ok">${t.gpsOk}</button>
+        <button class="gps-skip" id="g-skip">${t.gpsSkip}</button>
+      </div>`;
+  }
+  ov.appendChild(box);
+  setTimeout(()=>{
+    document.getElementById("g-ok")?.addEventListener("click",()=>startGPS(svc));
+    document.getElementById("g-skip")?.addEventListener("click",()=>openFallbackMap(svc));
+  },0);
+  return ov;
+}
+
+// ═══════════════════════════════════════
+// LANGUAGE MENU
+// ═══════════════════════════════════════
+function mkLangMenu(){
+  const menu=el("div",{class:"lang-menu",id:"lang-menu-el",role:"menu"});
+  [{code:"he",flag:"🇮🇱",name:"עברית"},{code:"en",flag:"🇺🇸",name:"English"},{code:"ar",flag:"🇸🇦",name:"عربي"},{code:"am",flag:"🇪🇹",name:"አማርኛ"},{code:"ru",flag:"🇷🇺",name:"Русский"},{code:"es",flag:"🇪🇸",name:"Español"}].forEach(l=>{
+    const btn=el("button",{class:"lang-item"+(S.lang===l.code?" active":""),role:"menuitem"});
+    btn.innerHTML=`<span>${l.flag}</span><span>${l.name}</span>`;
+    btn.addEventListener("click",()=>{S.lang=l.code;S.langOpen=false;document.getElementById("html-root").setAttribute("dir",LANGS[l.code].dir);render();});
+    menu.appendChild(btn);
+  });
+  return menu;
+}
+
+// ═══════════════════════════════════════
+// ACCESSIBILITY PANEL
+// ═══════════════════════════════════════
+const accFab=document.getElementById("acc-fab");
+let accPanelEl=null;
+
+accFab.addEventListener("click",e=>{
+  e.stopPropagation();
+  S.accOpen=!S.accOpen;
+  if(S.accOpen)showAccPanel();
+  else{accPanelEl?.remove();accPanelEl=null;}
+});
+
+function showAccPanel(){
+  accPanelEl?.remove();
+  const t=T();
+  const panel=el("div",{class:"acc-panel","aria-label":t.accTitle,role:"dialog"});
+  const sizes=[{v:"13px",l:t.accSmall},{v:"16px",l:t.accNormal},{v:"19px",l:t.accLarge},{v:"22px",l:t.accXL}];
+  // Check animation preference
+  const noAnim=localStorage.getItem("kn_noanim")==="1";
+  // Check spacing preference
+  const wideSpace=localStorage.getItem("kn_space")==="1";
+  if(noAnim)document.body.style.setProperty("--anim","0s");
+  else document.body.style.removeProperty("--anim");
+
+  panel.innerHTML=`
+    <h3>♿ ${t.accTitle}</h3>
+    <div class="acc-row">
+      <span>${t.accFontSize}</span>
+      <div class="acc-btns">
+        ${sizes.map(s=>`<button class="acc-btn${S.fs===s.v?" active":""}" data-fs="${s.v}" aria-pressed="${S.fs===s.v}">${s.l}</button>`).join("")}
+      </div>
+    </div>
+    <div class="acc-row">
+      <span>${t.accContrast}</span>
+      <button class="acc-toggle${S.hc?" on":""}" id="acc-hc" aria-label="${t.accContrast}" aria-pressed="${S.hc}"></button>
+    </div>
+    <div class="acc-row">
+      <span>🚫 הפחת אנימציות</span>
+      <button class="acc-toggle${noAnim?" on":""}" id="acc-anim" aria-pressed="${noAnim}"></button>
+    </div>
+    <div class="acc-row">
+      <span>↔️ ריווח רחב</span>
+      <button class="acc-toggle${wideSpace?" on":""}" id="acc-space" aria-pressed="${wideSpace}"></button>
+    </div>
+    <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);">
+      <a href="https://www.gov.il/he/departments/moj_disability_rights/govil-landing-page" target="_blank" style="color:var(--blue);font-weight:700;">🔗 נציבות שוויון זכויות</a>
+    </div>`;
+
+  panel.querySelectorAll(".acc-btn").forEach(b=>{
+    b.addEventListener("click",()=>{
+      S.fs=b.dataset.fs;
+      document.documentElement.style.setProperty("--fs",S.fs);
+      localStorage.setItem("kn_fs",S.fs);
+      showAccPanel();
+    });
+  });
+  panel.querySelector("#acc-hc")?.addEventListener("click",()=>{
+    S.hc=!S.hc;
+    document.body.classList.toggle("hc",S.hc);
+    localStorage.setItem("kn_hc",S.hc?"1":"0");
+    showAccPanel();
+  });
+  panel.querySelector("#acc-anim")?.addEventListener("click",()=>{
+    const cur=localStorage.getItem("kn_noanim")==="1";
+    localStorage.setItem("kn_noanim",cur?"0":"1");
+    if(!cur)document.body.style.setProperty("--anim","0s");
+    else document.body.style.removeProperty("--anim");
+    showAccPanel();
+  });
+  panel.querySelector("#acc-space")?.addEventListener("click",()=>{
+    const cur=localStorage.getItem("kn_space")==="1";
+    localStorage.setItem("kn_space",cur?"0":"1");
+    document.body.style.letterSpacing=cur?"":"0.04em";
+    document.body.style.lineHeight=cur?"":"1.9";
+    showAccPanel();
+  });
+  document.body.appendChild(panel);
+  accPanelEl=panel;
+}
+
+// ═══════════════════════════════════════
+// AI CHAT
+// ═══════════════════════════════════════
+const chatFab=document.getElementById("chat-fab");
+let chatPanelEl=null;
+
+// Init chat with welcome message
+if(S.chatMsgs.length===0){
+  S.chatMsgs=[{role:"ai",text:LANGS.he.chatWelcome}];
+}
+
+chatFab.addEventListener("click",e=>{
+  e.stopPropagation();
+  S.chatOpen=!S.chatOpen;
+  if(S.chatOpen)showChatPanel();
+  else{chatPanelEl?.remove();chatPanelEl=null;}
+});
+
+function showChatPanel(){
+  chatPanelEl?.remove();
+  const t=T();
+  const panel=el("div",{class:"chat-panel",role:"dialog","aria-label":t.chatTitle});
+  // Header
+  const head=el("div",{class:"chat-head"});
+  head.innerHTML=`<div class="chat-head-ico">🤖</div><div><div class="chat-head-txt">${t.chatTitle}</div><div class="chat-head-sub">${t.chatSub}</div></div>`;
+  const closeBtn=el("button",{class:"chat-close","aria-label":"סגור"});closeBtn.textContent="✕";
+  closeBtn.onclick=()=>{S.chatOpen=false;chatPanelEl?.remove();chatPanelEl=null;};
+  head.appendChild(closeBtn);
+  panel.appendChild(head);
+  // API key setup if needed
+  if(!S.apiKey){
+    const keyBox=el("div",{class:"api-key-box"});
+    keyBox.innerHTML=`<div>${t.chatApiHelp}</div>`;
+    const inp=el("input",{type:"password",placeholder:t.chatApiKey});
+    const saveBtn=el("button");saveBtn.textContent=t.chatApiSave;
+    saveBtn.onclick=()=>{if(inp.value.trim()){S.apiKey=inp.value.trim();localStorage.setItem("kn_api",S.apiKey);showChatPanel();}};
+    keyBox.appendChild(inp);keyBox.appendChild(saveBtn);
+    panel.appendChild(keyBox);
+  }
+  // Messages
+  const msgs=el("div",{class:"chat-msgs",role:"log","aria-live":"polite"});
+  S.chatMsgs.forEach(m=>{
+    const d=el("div",{class:`chat-msg ${m.role}`});d.textContent=m.text;msgs.appendChild(d);
+  });
+  if(S.chatLoading){const d=el("div",{class:"chat-msg typing"});d.textContent=t.chatTyping;msgs.appendChild(d);}
+  panel.appendChild(msgs);
+  setTimeout(()=>{msgs.scrollTop=msgs.scrollHeight;},50);
+  // Input
+  const inputRow=el("div",{class:"chat-input-row"});
+  const inp=el("input",{type:"text",placeholder:t.chatPlaceholder,"aria-label":t.chatPlaceholder});
+  const sendBtn=el("button",{class:"chat-send","aria-label":t.chatSend});sendBtn.textContent="➤";
+  const sendMsg=async()=>{
+    const q=inp.value.trim();if(!q)return;
+    inp.value="";
+    S.chatMsgs.push({role:"user",text:q});
+    S.chatLoading=true;
+    showChatPanel();
+    try{
+      const res=await fetch("https://api.anthropic.com/v1/messages",{
+        method:"POST",
+        headers:{"Content-Type":"application/json","x-api-key":S.apiKey,"anthropic-version":"2023-06-01"},
+        body:JSON.stringify({
+          model:"claude-sonnet-4-20250514",max_tokens:500,
+          system:`אתה עוזר אפליקציית כנפיים – מדריך שירותים לאנשים עם צרכים מיוחדים בישראל. ענה בעברית בתמציתיות. עזור להורים ולמטפלים למצוא שירותים מתאימים. השירותים הזמינים: ${SVC.map(s=>s.nm).join(", ")}.`,
+          messages:S.chatMsgs.filter(m=>m.role!=="ai").map(m=>({role:"user",content:m.text})).concat([{role:"user",content:q}])
+        })
+      });
+      const d=await res.json();
+      const reply=d.content?.[0]?.text||"מצטער, לא הצלחתי לענות כרגע.";
+      S.chatMsgs.push({role:"ai",text:reply});
+    }catch(e){
+      S.chatMsgs.push({role:"ai",text:"שגיאה בחיבור. בדוק מפתח API או חיבור לאינטרנט."});
+    }
+    S.chatLoading=false;
+    showChatPanel();
+  };
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();sendMsg();}});
+  sendBtn.addEventListener("click",sendMsg);
+  inputRow.appendChild(inp);inputRow.appendChild(sendBtn);
+  panel.appendChild(inputRow);
+  document.body.appendChild(panel);
+  chatPanelEl=panel;
+  setTimeout(()=>inp.focus(),100);
+}
+
+// ═══════════════════════════════════════
+// CLOSE PANELS ON OUTSIDE CLICK
+// ═══════════════════════════════════════
+document.addEventListener("click",e=>{
+  if(S.langOpen&&!e.target.closest(".lang-menu")&&!e.target.closest(".lang-btn")){S.langOpen=false;document.getElementById("lang-menu-el")?.remove();}
+  if(S.accOpen&&accPanelEl&&!e.target.closest(".acc-panel")&&!e.target.closest(".acc-fab")){S.accOpen=false;accPanelEl?.remove();accPanelEl=null;}
+  if(S.chatOpen&&chatPanelEl&&!e.target.closest(".chat-panel")&&!e.target.closest(".chat-fab")){S.chatOpen=false;chatPanelEl?.remove();chatPanelEl=null;}
+});
+
+// ═══════════════════════════════════════
+// PWA
+// ═══════════════════════════════════════
+let deferredPrompt=null;
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./sw.js")
+      .then(async reg=>{
+        console.log("[PWA] SW:",reg.scope);
+        // Register periodic sync
+        if("periodicSync" in reg){
+          try{const perm=await navigator.permissions.query({name:"periodic-background-sync"});
+            if(perm.state==="granted")await reg.periodicSync.register("update-services",{minInterval:24*60*60*1000});}
+          catch(e){}
+        }
+      }).catch(e=>console.warn("[PWA]",e));
+  });
+}
+
+window.addEventListener("beforeinstallprompt",e=>{
+  e.preventDefault();deferredPrompt=e;
+  const b=document.getElementById("install-banner");
+  if(b)b.style.display="flex";
+});
+
+window.addEventListener("appinstalled",()=>{
+  const b=document.getElementById("install-banner");
+  if(b)b.style.display="none";
+  toast(T().installed,"💙");
+});
+
+document.getElementById("install-btn")?.addEventListener("click",async()=>{
+  if(!deferredPrompt){
+    // Fallback: show instructions
+    toast("לחץ על תפריט הדפדפן ← 'הוסף למסך הבית'","📱");
+    return;
+  }
+  deferredPrompt.prompt();
+  const{outcome}=await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  if(outcome==="accepted")toast(T().installed,"💙");
+});
+
+// Handle URL params
+const urlCat=new URLSearchParams(location.search).get("cat");
+if(urlCat&&CATS.find(c=>c.id===urlCat))S.cat=urlCat;
+
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
+render();
+</script>
+</body>
+</html>
